@@ -6,6 +6,7 @@ import asyncio
 from dotenv import load_dotenv
 from discord.ext import commands
 import random
+import wikipedia as wk
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -15,6 +16,9 @@ GUILD = os.getenv('DISCORD_GUILD')
 
 #Sets up bot prefix
 bot = commands.Bot(command_prefix="!")
+
+#Set Wikipedia language
+wiki_language = wk.set_lang("en")
 
 
 @bot.event
@@ -33,29 +37,33 @@ async def on_member_join(member):
     await member.create_dm()
     await member.dm_channel_send(f'Hi {member.name}! Welcome to IEEE ISEP Student Branch Discord')
 
-# @bot.event
-# async def on_message(message,ctx):
-#     bot_msg = message.content
-#     guild = ctx.message.guild
+@bot.command()
+async def info(ctx):
     
-#     ##################
-#     ##Server Info
-#     ##################   
-#     # name = str(ctx.guild.name)
-#     # description = str(ctx.guild.description)
-#     # owner = str(ctx.guild.owner)
-#     # server_id = str(ctx.guild.id)
+    server = ctx.message.author.server
+    server_name = server.name
+    server_id = server.id
+    server_owner = server.owner.name
+
+    print("server name: {}"
+          "server id: {}"
+          "server owner: {}"
+          .format(server_name, server_id, server_owner))
     
-#     #Check if the bot is sending himself messages
-#     if(message.author == bot.user):
-#         return
-#     #Info command
-#     elif(bot_msg.startswith('!info')):
-#         await message.channel.send("Thanks for requesting info")
-#     #Help command
-#     elif(bot_msg.startswith('!help')):
-#         await message.channel.send("how can I help?")
+@bot.command()
+async def search(ctx,arg):
+    """
+    Searches the wikipedia for a specific topic
+    """
+    if(type(arg) != str):
+        exit(-1)
         
+    await ctx.send("Searching for results\n")
+    await asyncio.sleep(1)
+    
+    #Wikipedia search result
+    wiki_search = wk.summary(arg,sentences=1)
+    await ctx.send(f'Here is the result: {wiki_search}')
 
 #Always remember to add the () to the bot.command decorator
 @bot.command()
