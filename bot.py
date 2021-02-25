@@ -5,6 +5,7 @@ import discord
 import asyncio
 from dotenv import load_dotenv
 from discord.ext import commands
+import random
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -14,6 +15,7 @@ GUILD = os.getenv('DISCORD_GUILD')
 
 #Sets up bot prefix
 bot = commands.Bot(command_prefix="!")
+
 
 @bot.event
 async def on_ready():
@@ -27,38 +29,50 @@ async def on_ready():
     print(f'Connected to server {i.name}')
 
 @bot.event
-async def on_message(message,ctx):
-    bot_msg = message.content
-    
-    ##################
-    ##Server Info
-    ##################   
-    name = str(ctx.guild.name)
-    description = str(ctx.guild.description)
-    owner = str(ctx.guild.owner)
-    server_id = str(ctx.guild.id)
-    
-    #Check if the bot is sending himself messages
-    if(message.author == bot.user):
-        return
-    #Info command
-    elif(bot_msg.startswith('!info')):
-        await message.channel.send("Server name: %s\nDescription: %s\nOwner: %s\nID: %s" % (name,description,owner,server_id))
-    #Help command
-    elif(bot_msg.startswith('!help')):
-        await message.channel.send("How can I help?")
+async def on_member_join(member):
+    await member.create_dm()
+    await member.dm_channel_send(f'Hi {member.name}! Welcome to IEEE ISEP Student Branch Discord')
 
-@bot.command
-async def ServerInfo(ctx):
+# @bot.event
+# async def on_message(message,ctx):
+#     bot_msg = message.content
+#     guild = ctx.message.guild
+    
+#     ##################
+#     ##Server Info
+#     ##################   
+#     # name = str(ctx.guild.name)
+#     # description = str(ctx.guild.description)
+#     # owner = str(ctx.guild.owner)
+#     # server_id = str(ctx.guild.id)
+    
+#     #Check if the bot is sending himself messages
+#     if(message.author == bot.user):
+#         return
+#     #Info command
+#     elif(bot_msg.startswith('!info')):
+#         await message.channel.send("Thanks for requesting info")
+#     #Help command
+#     elif(bot_msg.startswith('!help')):
+#         await message.channel.send("how can I help?")
+        
+
+#Always remember to add the () to the bot.command decorator
+@bot.command()
+async def channel_txt(ctx):
     """
-    Return information about the server if requested by the user
+    Creates new text channel upon command input
     """
     
-    server = ctx.guild
-    server_name = guild.name
-    server_creation_date = server.created_at
-    owner_server = server.owner.name
+    category_name = 'IEEE'
+    #Fetches the category
+    category = discord.utils.get(ctx.guild.categories,name=category_name)
     
-    return server, server_name, server_creation_date, owner_server
+    channel_names = ["chillout", "secret-room", "butterfly", "willy wonka", "team-chat", "winnie the pooh"]
+    
+    #Choose the name randomly
+    choice = random.choice(channel_names)
+    await ctx.guild.create_text_channel(choice)
+    
         
 bot.run(TOKEN)
