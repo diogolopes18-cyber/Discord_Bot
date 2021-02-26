@@ -81,6 +81,14 @@ async def channel_txt(ctx):
     #Choose the name randomly
     choice = random.choice(channel_names)
     await ctx.guild.create_text_channel(choice)
+
+@bot.command()
+async def bruh(ctx):
+    await ctx.send("https://upload.wikimedia.org/wikipedia/en/b/b9/Terminator-2-judgement-day.jpg")
+
+@bot.command()
+async def britney(ctx):
+    await ctx.send("https://pbs.twimg.com/media/Etaz6KGXIAA7Fok.jpg")
     
         
 bot.run(TOKEN)
