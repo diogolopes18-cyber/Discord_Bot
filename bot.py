@@ -7,6 +7,10 @@ from dotenv import load_dotenv
 from discord.ext import commands
 import random
 import wikipedia as wk
+from pkgutil import iter_modules
+
+modules = set(x[1] for x in iter_modules())
+
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -20,6 +24,13 @@ bot = commands.Bot(command_prefix="!")
 #Set Wikipedia language
 wiki_language = wk.set_lang("en")
 
+
+def check_for_modules():
+    with open('requirements.txt', 'rb') as f:
+        for line in f:
+            requirement = line.rstrip()
+            if not requirement in modules:
+                os.system("pip3 install -r requeriments.txt")
 
 @bot.event
 async def on_ready():
