@@ -101,5 +101,19 @@ async def bruh(ctx):
 async def britney(ctx):
     await ctx.send("https://pbs.twimg.com/media/Etaz6KGXIAA7Fok.jpg")
     
+@bot.command()
+async def new(ctx, arg1, arg2):
+    if(arg1 == "" or arg2 == ""):
+        await ctx.send("Need to specify a command\n")
+    try:
+        if(arg1 == "voice"):
+            await ctx.guild.create_voice_channel(arg2)
+        elif(arg1 == "text"):
+            await ctx.guild.create_text_channel(arg2)
+        elif(arg1 == "category"):
+            await ctx.guild.create_category(arg2, overwrites=None, reason=None)
+    except Exception as error:
+        print("Bot error")
+    
         
 bot.run(TOKEN)
