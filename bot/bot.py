@@ -112,7 +112,7 @@ async def new(ctx, arg1, arg2):
             await ctx.guild.create_text_channel(arg2)
         elif(arg1 == "category"):
             await ctx.guild.create_category(arg2, overwrites=None, reason=None)
-        #Add new role
+        #Add new role inside server
         elif(arg1 == "role"):
             await ctx.guild.create_role(name=arg2)
             
