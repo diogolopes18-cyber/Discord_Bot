@@ -102,6 +102,7 @@ async def britney(ctx):
     await ctx.send("https://pbs.twimg.com/media/Etaz6KGXIAA7Fok.jpg")
     
 @bot.command()
+@commands.has_role("Board")
 async def new(ctx, arg1, arg2):
     if(arg1 == "" or arg2 == ""):
         await ctx.send("Need to specify a command\n")
@@ -115,6 +116,7 @@ async def new(ctx, arg1, arg2):
         #Add new role inside server
         elif(arg1 == "role"):
             await ctx.guild.create_role(name=arg2)
+            await ctx.send(f'Role `{name}` has been created')
             
     except Exception as error:
         print("Bot error")
