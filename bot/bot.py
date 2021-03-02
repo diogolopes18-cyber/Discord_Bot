@@ -8,6 +8,7 @@ from discord.ext import commands
 import random
 import wikipedia as wk
 from pkgutil import iter_modules
+from server import server_thread
 
 modules = set(x[1] for x in iter_modules())
 
@@ -121,5 +122,14 @@ async def new(ctx, arg1, arg2):
     except Exception as error:
         print("Bot error")
     
+#Gives roles to members, but must be a member with the Board role
+@bot.command()
+@commands.has_role("Board")
+async def role(ctx):
+    member = ctx.message.author
+    role = get(member.server.roles, name="Test")
+    await bot.add_roles(member, role)
         
+#Calls the web server so that the web server and the bot can be executed simultaneously
+server_thread()
 bot.run(TOKEN)
