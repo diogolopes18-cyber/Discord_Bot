@@ -8,6 +8,7 @@ from discord.ext import commands
 import random
 import wikipedia as wk
 from pkgutil import iter_modules
+from server import server_thread
 
 modules = set(x[1] for x in iter_modules())
 
@@ -48,18 +49,15 @@ async def on_member_join(member):
     await member.create_dm()
     await member.dm_channel_send(f'Hi {member.name}! Welcome to IEEE ISEP Student Branch Discord')
 
-@bot.command()
+@bot.command(pass_context=True)
 async def info(ctx):
     
-    server = ctx.message.author.server
-    server_name = server.name
-    server_id = server.id
-    server_owner = server.owner.name
-
-    print("server name: {}"
-          "server id: {}"
-          "server owner: {}"
-          .format(server_name, server_id, server_owner))
+    server = ctx.guild
+    #server_name = server.name
+    # server_id = ctx.guild.id
+    server_owner = ctx.owner_id
+    
+    await ctx.send(f'Here is some info\nServer name: {server}')
     
 @bot.command()
 async def search(ctx,arg):
@@ -102,9 +100,30 @@ async def britney(ctx):
     await ctx.send("https://pbs.twimg.com/media/Etaz6KGXIAA7Fok.jpg")
     
 @bot.command()
+@commands.has_role("Board")
 async def new(ctx, arg1, arg2):
     if(arg1 == "" or arg2 == ""):
         await ctx.send("Need to specify a command\n")
+    
+    
+    #Color dictionary
+    dictOfColors = { '1' : discord.Color.default(),
+                     '2' : discord.Color.teal(),
+                     '3' : discord.Color.dark_teal(),
+                     '4' : discord.Color.green(),
+                     '5' : discord.Color.dark_green(),
+                     '6' : discord.Color.blue(),
+                     '7' : discord.Color.purple(),
+                     '8' : discord.Color.dark_purple(),
+                     '9' : discord.Color.magenta(),
+                     '10' : discord.Color.dark_magenta(),
+                     '11' : discord.Color.gold(),
+                     '12' : discord.Color.dark_gold(),
+                     '13' : discord.Color.orange(),
+                     '14' : discord.Color.dark_orange(),
+                     '15' : discord.Color.red(),
+                     '16' : discord.Color.dark_red() }
+    
     try:
         if(arg1 == "voice"):
             await ctx.guild.create_voice_channel(arg2)
@@ -112,8 +131,22 @@ async def new(ctx, arg1, arg2):
             await ctx.guild.create_text_channel(arg2)
         elif(arg1 == "category"):
             await ctx.guild.create_category(arg2, overwrites=None, reason=None)
+        #Add new role inside server
+        elif(arg1 == "role"):
+            await ctx.guild.create_role(name=arg2)
+            await ctx.send(f'Role `{name}` has been created')
+            
     except Exception as error:
         print("Bot error")
     
+#Gives roles to members, but must be a member with the Board role
+@bot.command()
+@commands.has_role("Board")
+async def add_role(ctx,member_role):
+    member = ctx.message.author
+    role = get(member.server.roles, name=member_role)
+    await bot.add_roles(member, member_role)
         
+#Calls the web server so that the web server and the bot can be executed simultaneously
+#server_thread()
 bot.run(TOKEN)
