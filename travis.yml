@@ -1,4 +1,5 @@
 language: python
+sudo: false
 python:
   - "2.7"
   - "3.4"
@@ -14,4 +15,4 @@ install:
   - pip install -r requirements.txt
 # command to run tests
 script:
-  - /home/diogo/discord_bot/IEEE_ISEP_Discord_Bot/bot/bot.py
+  - ./bot/bot.py
