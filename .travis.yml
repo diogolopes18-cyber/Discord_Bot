@@ -1,5 +1,6 @@
 language: python
 sudo: false
+dist: focal
 python:
   - "2.7"
   - "3.4"
@@ -15,4 +16,4 @@ install:
   - pip install -r requirements.txt
 # command to run tests
 script:
-  - hello
+  - /bot/bot
