@@ -2,7 +2,10 @@ language: python
 dist: focal
 # command to install dependencies
 install:
-  - pip3 install -r requirements.txt
+  - pip3 install discord
+  - pip3 install wikipedia
+  - pip3 install dotenv
+  - pip3 install asyncio
 # command to run tests
 script:
   - /bot/bot
