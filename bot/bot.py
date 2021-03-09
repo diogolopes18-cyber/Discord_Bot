@@ -8,7 +8,7 @@ from discord.ext import commands
 import random
 import wikipedia as wk
 from pkgutil import iter_modules
-from server import server_thread
+#from server import server_thread
 
 modules = set(x[1] for x in iter_modules())
 
