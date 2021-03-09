@@ -8,4 +8,4 @@ install:
   - pip3 install asyncio
 # command to run tests
 script:
-  - /bot/bot
+  - /bot/bot.py
