@@ -8,4 +8,4 @@ install:
   - pip3 install asyncio
 # command to run tests
 script:
-  - /bot/bot.py
+  - /home/diogo/discord_bot/IEEE_ISEP_Discord_Bot/bot/bot.py
