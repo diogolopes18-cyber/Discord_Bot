@@ -10,6 +10,6 @@ install:
   - pip3 install asyncio
 # command to run tests
 script:
-  - python3 /home/diogo/discord_bot/IEEE_ISEP_Discord_Bot/bot/bot.py
+  - ../bot/bot.py
 after_success:
   - echo "SUCCESS"
