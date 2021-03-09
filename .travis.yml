@@ -1,6 +1,8 @@
 language: python
 dist: focal
 # command to install dependencies
+before_install:
+  - echo "Initializing build"
 install:
   - pip3 install discord
   - pip3 install wikipedia
@@ -8,4 +10,6 @@ install:
   - pip3 install asyncio
 # command to run tests
 script:
-  - /home/diogo/discord_bot/IEEE_ISEP_Discord_Bot/bot/bot.py
+  - python3 /home/diogo/discord_bot/IEEE_ISEP_Discord_Bot/bot/bot.py
+after_success:
+  - echo "SUCCESS"
