@@ -104,7 +104,6 @@ async def britney(ctx):
 async def new(ctx, arg1, arg2):
     if(arg1 == "" or arg2 == ""):
         await ctx.send("Need to specify a command\n")
-        await.ctx.sleep(1)
     
     
     #Color dictionary
