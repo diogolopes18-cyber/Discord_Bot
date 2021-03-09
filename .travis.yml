@@ -10,6 +10,6 @@ install:
   - pip3 install asyncio
 # command to run tests
 script:
-  - ../bot/bot.py
+  - ./bot/bot.py
 after_success:
   - echo "SUCCESS"
