@@ -8,6 +8,7 @@ install:
   - pip3 install wikipedia
   - pip3 install python-dotenv
   - pip3 install asyncio
+  - pip3 install Flask
 # command to run tests
 script:
   - ./bot/bot.py
