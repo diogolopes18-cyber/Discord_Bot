@@ -2,6 +2,7 @@
 
 IEEE ISEP Student Branch Discord server bot for automating some processes like creating channels, roles or just getting information
 
+![](https://travis-ci.com/diogolopes18-cyber/IEEE_ISEP_Discord_Bot.svg?branch=main)
 ![](https://img.shields.io/github/languages/count/diogolopes18-cyber/IEEE_ISEP_Discord_Bot)
 ![](https://img.shields.io/github/repo-size/diogolopes18-cyber/IEEE_ISEP_Discord_Bot)
 ![](https://img.shields.io/github/license/diogolopes18-cyber/IEEE_ISEP_Discord_Bot)
