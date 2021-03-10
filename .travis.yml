@@ -12,6 +12,6 @@ install:
   - pip3 install os-sys
 # command to run tests
 script:
-  - ./bot/bot.py
+  - ./travis_test.py
 after_success:
   - echo "SUCCESS"
