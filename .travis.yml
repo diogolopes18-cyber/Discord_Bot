@@ -9,7 +9,7 @@ install:
   - pip3 install python-dotenv
   - pip3 install asyncio
   - pip3 install Flask
-  - pip3 install os-sys
+  - pip3 install numpy
 # command to run tests
 script:
   - ./travis_test.py
