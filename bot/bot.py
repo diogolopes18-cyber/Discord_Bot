@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+__author__ = "Diogo Lopes"
+__license__ = "MIT"
+__email__ = "diogolopes18@ieee.org"
+
 import os
 import discord
 import asyncio
