@@ -61,7 +61,6 @@ async def info(ctx):
     server = ctx.guild
     #server_name = server.name
     # server_id = ctx.guild.id
-    server_owner = ctx.owner_id
 
     await ctx.send(f'Here is some info\nServer name: {server}')
 
@@ -72,7 +71,7 @@ async def search(ctx, arg):
     Searches the wikipedia for a specific topic
     """
     if(type(arg) != str):
-        exit(-1)
+        await ctx.send(f'Search terms must be a sentence')
 
     await ctx.send("Searching for results\n")
     await asyncio.sleep(1)
