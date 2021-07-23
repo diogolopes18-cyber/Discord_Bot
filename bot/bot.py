@@ -13,6 +13,8 @@ from discord.ext import commands
 import random
 import wikipedia as wk
 from pkgutil import iter_modules
+
+from news import getNews
 import colors as available_colors
 
 modules = set(x[1] for x in iter_modules())
@@ -139,7 +141,7 @@ async def new(ctx, arg1, arg2):
         print("Bot error")
 
 
-@bot.command
+@bot.command()
 @commands.has_role("Board")
 async def edit(ctx, role, new_color):
     """
@@ -159,12 +161,25 @@ async def edit(ctx, role, new_color):
     await ctx.role.edit(name=role, colour=new_color)
 
 
+######################
+##  GET RECENT NEWS ##
+######################
 @bot.command()
-@commands.has_role("Board")
-async def add_role(ctx, member_role):
-    member = ctx.message.author
-    role = get(member.server.roles, name=member_role)
-    await bot.add_roles(member, member_role)
+async def news(ctx):
+    """
+    Retrieves recent news from the specified country
+    """
+
+    result = getNews(country="us")
+    await ctx.send(f'Here are the news:\n\n{result}')
+
+
+# @bot.command()
+# @commands.has_role("Board")
+# async def add_role(ctx, member_role):
+#     member = ctx.message.author
+#     role = get(member.server.roles, name=member_role)
+#     await bot.add_roles(member, member_role)
 
 # Calls the web server so that the web server and the bot can be executed simultaneously
 # server_thread()
