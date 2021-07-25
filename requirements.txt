@@ -1,4 +1,4 @@
 discord
 wikipedia
-dotenv
+python-dotenv
 asyncio
