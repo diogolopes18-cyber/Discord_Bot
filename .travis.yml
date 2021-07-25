@@ -2,7 +2,6 @@ language: python
 dist: focal
 stages:
   - build
-  - test
 
 # command to install dependencies
 jobs:
@@ -13,8 +12,7 @@ jobs:
       - python -m pip install --upgrade pip
     install:
       - pip3 install -r requirements.txt
-  - stage: Test
-    name: Test scripts
+
     script:
       - ./travis_test.py
     after_success:
