@@ -1,17 +1,21 @@
 language: python
 dist: focal
+stages:
+  - build
+  - test
+
 # command to install dependencies
-before_install:
-  - echo "Initializing build"
-install:
-  - pip3 install discord
-  - pip3 install wikipedia
-  - pip3 install python-dotenv
-  - pip3 install asyncio
-  - pip3 install Flask
-  - pip3 install numpy
-# command to run tests
-script:
-  - ./travis_test.py
-after_success:
-  - echo "SUCCESS"
+jobs:
+  - stage: Build
+    name: Building dependencies
+    before_install:
+      - echo "Initializing build"
+      - python -m pip install --upgrade pip
+    install:
+      - pip3 install --user -r requirements.txt
+  - stage: Test
+    name: Test scripts
+    script:
+      - ./travis_test.py
+    after_success:
+      - echo "SUCCESS"
