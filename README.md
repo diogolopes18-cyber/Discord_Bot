@@ -7,18 +7,6 @@ IEEE ISEP Student Branch Discord server bot for automating some processes like c
 ![](https://img.shields.io/github/repo-size/diogolopes18-cyber/IEEE_ISEP_Discord_Bot)
 ![](https://img.shields.io/github/license/diogolopes18-cyber/IEEE_ISEP_Discord_Bot)
 
-# Installation
-
-First of all, you need to have `pip3` installed in your local machine. To do so, run:
-
-`sudo apt-get update`
-
-`sudo apt-get -y install python3-pip`
-
-To check if `pip3` was successfully installed, type:
-
-`pip3 --version`
-
 # Usage
 
 **1. Running bot**
