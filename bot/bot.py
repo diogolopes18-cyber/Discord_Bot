@@ -165,12 +165,16 @@ async def edit(ctx, role, new_color):
 ##  GET RECENT NEWS ##
 ######################
 @bot.command()
-async def news(ctx):
+async def news(ctx, arg=None):
     """
     Retrieves recent news from the specified country
     """
 
-    result = getNews(country="us")
+    if(arg == None):
+        result = getNews(country="us")
+    else:
+        result = getNews(country=arg)
+
     await ctx.send(f'```Here are the news:\n\n{result}```')
 
 # Calls the web server so that the web server and the bot can be executed simultaneously
