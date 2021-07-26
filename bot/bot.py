@@ -171,15 +171,7 @@ async def news(ctx):
     """
 
     result = getNews(country="us")
-    await ctx.send(f'Here are the news:\n\n{result}')
-
-
-# @bot.command()
-# @commands.has_role("Board")
-# async def add_role(ctx, member_role):
-#     member = ctx.message.author
-#     role = get(member.server.roles, name=member_role)
-#     await bot.add_roles(member, member_role)
+    await ctx.send(f'```Here are the news:\n\n{result}```')
 
 # Calls the web server so that the web server and the bot can be executed simultaneously
 # server_thread()
