@@ -21,6 +21,8 @@ class spotifyReleases():
         header = {
             "Authorization": f'Bearer {self.api_key}'
         }
+
+        return header
     
     def search_artist_no_type(self):
 
