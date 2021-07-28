@@ -9,12 +9,7 @@ IEEE ISEP Student Branch Discord server bot for automating some processes like c
 
 # Usage
 
-**1. Running bot**
-
-- ```cd bot```
-- ```python3 bot.py```
-
-**2. Basic Commands**
+**1. Basic Commands**
 
 - ```!info``` returns information about the server like its owner and numbr of members
 - ```!new <channel_type> <channel_name>``` creates a text or voice channel depending on the second argument value
@@ -22,7 +17,7 @@ IEEE ISEP Student Branch Discord server bot for automating some processes like c
 - ```!news``` returns the top news of the day from a specified country
 - ```!channel_txt``` creates a text channel with a random name
 
-**3. Upcoming features**
+**2. Upcoming features**
 
 - **Twitch integration** in order for a user to get information about a specific streamer in their DMs
 - **Moderation measures** such as spam control
