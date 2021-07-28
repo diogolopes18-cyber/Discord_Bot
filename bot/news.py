@@ -14,12 +14,17 @@ url_request = "https://newsapi.org/v2/top-headlines"
 
 
 class getNews():
-    def __init__(self, country):
+    def __init__(self, country, topic=None):
         self.relevance = "popularity"
         self.country = country
+        self.topic = topic
         self.key = API_KEY
         self.arr = []
-        self.get_general_news()
+
+        if(self.topic != None):
+            self.get_news_by_topic()
+        else:
+            self.get_general_news()
 
     def get_general_news(self) -> list:
 
@@ -35,6 +40,21 @@ class getNews():
             self.arr.append(news)
 
         return self.arr
+    
+    ######################
+    ##  IN DEVELOPMENT  ##
+    ######################
+    def get_news_by_topic(self):
+
+        params_request_topic = {
+            "country": self.country,
+            "apiKey": self.key,
+            "topic": self.topic
+        }
+
+        result_topic = requests.get(url_request, params=params_request_topic).json()
+
+        return result_topic
 
     def __repr__(self) -> str:
         return repr(self.arr)
