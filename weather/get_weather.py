@@ -35,12 +35,14 @@ class getCurrentWeather():
         return self._weather_results
 
     def associate_emoji_with_weather(self):
-        test = self.weather_location()
+        weather_list = self.weather_location()[0].lower()
         substr = emoji()
-
-        print(substr)
         
+        #Looks for a correspondence between the returned weather and an emoji
+        for key in substr.keys():
+            split_string = weather_list.split()
+            for word in split_string:
+                if(word == key):
+                    corresponding_emoji = substr[i]
         
-
-obj = getCurrentWeather(location="Porto")
-obj.associate_emoji_with_weather()
+        return corresponding_emoji
