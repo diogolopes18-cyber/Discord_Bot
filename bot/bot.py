@@ -135,7 +135,7 @@ async def new(ctx, arg1, arg2):
             # Select color
             color = random.choice(colors)
             role_name = await ctx.guild.create_role(name=arg2, colour=color)
-            await ctx.send(f'Role `{role_name}` has been created')
+            await ctx.send(f'Role {role_name} has been created')
 
     except Exception as error:
         print("Bot error")
@@ -165,16 +165,17 @@ async def edit(ctx, role, new_color):
 ##  GET RECENT NEWS ##
 ######################
 @bot.command()
-async def news(ctx, arg=None):
+async def news(ctx, cnt=None, topic_choice=None):
     """
     Retrieves recent news from the specified country
     """
 
-    if(arg == None):
+    if(cnt == None):
         result = getNews(country="us")
     else:
-        result = getNews(country=arg)
+        result = getNews(country=cnt)
 
+            
     await ctx.send(f'```Here are the news:\n\n{result}```')
 
 # Calls the web server so that the web server and the bot can be executed simultaneously
