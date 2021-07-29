@@ -43,6 +43,6 @@ class getCurrentWeather():
             split_string = weather_list.split()
             for word in split_string:
                 if(word == key):
-                    corresponding_emoji = substr[i]
+                    corresponding_emoji = substr[key]
         
         return corresponding_emoji
