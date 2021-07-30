@@ -17,6 +17,8 @@ from pkgutil import iter_modules
 from news import getNews
 import colors as available_colors
 
+from weather.get_weather import getCurrentWeather
+
 modules = set(x[1] for x in iter_modules())
 colors = available_colors.dict_colors()
 
@@ -175,9 +177,19 @@ async def news(ctx, cnt=None, topic_choice=None):
     else:
         result = getNews(country=cnt)
 
-            
     await ctx.send(f'```Here are the news:\n\n{result}```')
 
-# Calls the web server so that the web server and the bot can be executed simultaneously
-# server_thread()
+
+@bot.command()
+async def weather(ctx, place):
+    """
+    Retrieves weather from location
+    """
+
+    assert place != None, "Must provide a location"
+
+    weather_result = getCurrentWeather(location=place)
+    await ctx.send(f'Here it is\n {weather_result}')
+
+
 bot.run(TOKEN)
