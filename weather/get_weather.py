@@ -17,8 +17,7 @@ class getCurrentWeather():
         self.key = API_KEY
         self.location = location
         self.base_url = "https://api.weatherbit.io/v2.0/current"
-        
-    
+
     def weather_location(self):
 
         request_params = {
@@ -26,7 +25,8 @@ class getCurrentWeather():
             "city": self.location
         }
 
-        weather_request = requests.get(self.base_url, params=request_params).json()
+        weather_request = requests.get(
+            self.base_url, params=request_params).json()
 
         for i in range(len(weather_request["data"])):
             forecast = weather_request["data"][i]["weather"]["description"]
@@ -37,12 +37,12 @@ class getCurrentWeather():
     def associate_emoji_with_weather(self):
         weather_list = self.weather_location()[0].lower()
         substr = emoji()
-        
-        #Looks for a correspondence between the returned weather and an emoji
+
+        # Looks for a correspondence between the returned weather and an emoji
         for key in substr.keys():
             split_string = weather_list.split()
             for word in split_string:
                 if(word == key):
                     corresponding_emoji = substr[key]
-        
-        return corresponding_emoji
+
+        return f'The weather is gonna be {weather_list} {corresponding_emoji}'
