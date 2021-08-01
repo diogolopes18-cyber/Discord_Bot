@@ -46,3 +46,35 @@ class getCurrentWeather():
                     corresponding_emoji = substr[key]
 
         return f'The weather is gonna be {weather_list} {corresponding_emoji}'
+
+class getForecast():
+    def __init__(self, place, days=16):
+        self.key = API_KEY
+        self.place = place
+        self.url = "https://api.weatherbit.io/v2.0/forecast"
+        self.days = days
+    
+    def forecast(self):
+    
+        request_forecast_params = {
+            "key": self.key,
+            "city": self.place
+        }
+
+        if(self.days != 16):
+            request_forecast_different_days = {
+                "key": self.key,
+                "city": self.place,
+                "days": self.days
+            }
+
+            forecast_user_days = requests.get(self.url, params=request_forecast_different_days)
+
+            return forecast_user_days
+        
+        else:
+            forecast_default_days = requests.get(self.url, params=request_forecast_params)
+
+            return forecast_default_days
+        
+        
