@@ -1,4 +1,4 @@
 .env
-/bot/__pycache__
+__pycache__/
 .vscode
 /bot/weather/__pycache__/*
