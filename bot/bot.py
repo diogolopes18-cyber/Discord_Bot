@@ -6,18 +6,17 @@ __email__ = "diogolopes18@ieee.org"
 
 import os
 import discord
-import asyncio
-from discord import colour
-from dotenv import load_dotenv
 from discord.ext import commands
+import asyncio
+
+from dotenv import load_dotenv
 import random
 import wikipedia as wk
 from pkgutil import iter_modules
 
-from news import getNews
-import colors as available_colors
-
-from weather.get_weather import getCurrentWeather
+from bot.news.news import getNews
+import bot.colors.colors as available_colors
+from bot.weather.get_weather import getCurrentWeather
 
 modules = set(x[1] for x in iter_modules())
 colors = available_colors.dict_colors()
