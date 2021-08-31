@@ -11,8 +11,9 @@ import asyncio
 
 from dotenv import load_dotenv
 import random
-import wikipedia as wk
 from pkgutil import iter_modules
+import wikipedia as wk
+wiki_language = wk.set_lang("en")
 
 from bot.news.news import getNews
 import bot.colors.colors as available_colors
@@ -21,16 +22,13 @@ from bot.weather.get_weather import getCurrentWeather
 modules = set(x[1] for x in iter_modules())
 colors = available_colors.dict_colors()
 
-
+#####################
+##  ENV VARIABLES  ##
+#####################
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
-# Get the server name
 GUILD = os.getenv('DISCORD_GUILD')
-# Sets up bot prefix
 bot = commands.Bot(command_prefix="!")
-# Set Wikipedia language
-wiki_language = wk.set_lang("en")
-
 
 def check_for_modules():
     with open('requirements.txt', 'rb') as f:
