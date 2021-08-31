@@ -4,6 +4,8 @@ from setuptools import setup
 
 setup(
     name='bot',
+    author='Diogo Lopes & Ivan Pinto',
+    version='1.0.0',
     packages=['bot'],
     install_requires=['python-dotenv == 0.15.0',
                       'asyncio==3.4.3',
