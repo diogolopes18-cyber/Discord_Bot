@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import requests
-import json
 import os
 from dotenv import load_dotenv
 from weather_emoji import emojis as emoji
