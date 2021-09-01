@@ -170,9 +170,14 @@ async def news(ctx, cnt=None, topic_choice=None):
     """
 
     if(cnt == None):
-        result = getNews(country="us")
+        result = getNews(country="pt")
     else:
         result = getNews(country=cnt)
+
+    #Returns news about certain topic
+    if(topic_choice != None):
+        result = getNews().get_news_by_topic(topic=topic_choice)
+        return ctx.send(f'Here are the news about {topic_choice}:\n\n{result}')
 
     await ctx.send(f'```Here are the news:\n\n{result}```')
 
