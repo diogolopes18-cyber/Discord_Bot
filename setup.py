@@ -7,9 +7,9 @@ setup(
     author='Diogo Lopes & Ivan Pinto',
     version='1.0.0',
     packages=['bot'],
-    install_requires=['python-dotenv == 0.15.0',
+    install_requires=['python-dotenv==0.15.0',
                       'asyncio==3.4.3',
                       'discord==1.7.3',
-                      'requests == 2.22.0',
+                      'requests==2.22.0',
                       'wikipedia==1.4.0']
 )

@@ -3,8 +3,11 @@
 import requests
 import os
 from dotenv import load_dotenv
-from weather_emoji import emojis as emoji
+from bot.weather.weather_emoji import emojis as emoji
 
+#####################
+##  ENV VARIABLES  ##
+#####################
 load_dotenv()
 API_KEY = os.getenv('API_KEY')
 
