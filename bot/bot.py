@@ -11,7 +11,6 @@ import asyncio
 
 from dotenv import load_dotenv
 import random
-from pkgutil import iter_modules
 import wikipedia as wk
 wiki_language = wk.set_lang("en")
 
@@ -19,7 +18,6 @@ from bot.news.news import getNews
 import bot.colors.colors as available_colors
 from bot.weather.get_weather import getCurrentWeather
 
-modules = set(x[1] for x in iter_modules())
 colors = available_colors.dict_colors()
 
 #####################
@@ -29,14 +27,6 @@ load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
 bot = commands.Bot(command_prefix="!")
-
-def check_for_modules():
-    with open('requirements.txt', 'rb') as f:
-        for line in f:
-            requirement = line.rstrip()
-            if not requirement in modules:
-                os.system("pip3 install -r requeriments.txt")
-
 
 @bot.event
 async def on_ready():
