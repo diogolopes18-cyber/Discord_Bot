@@ -17,6 +17,7 @@ wiki_language = wk.set_lang("en")
 from bot.news.news import getNews
 import bot.colors.colors as available_colors
 from bot.weather.get_weather import getCurrentWeather
+from bot.crypto.crypto_exchange import CryptoValue
 
 colors = available_colors.dict_colors()
 
@@ -178,10 +179,24 @@ async def weather(ctx, place):
     Retrieves weather from location
     """
 
-    assert place != None, "Must provide a location"
-
     weather_result = getCurrentWeather(location=place)
     await ctx.send(f'Here it is\n {weather_result}')
+
+
+@bot.command()
+async def crypto(ctx, src=None, dest=None, amount=None):
+    """
+    Retrieves cryptocurrency information
+    """
+
+    if(src == None):
+        result = CryptoValue()
+        await ctx.send(f'The current cryptocurrency values are {result}')
+
+    elif(src != None):
+        assert amount > 0, "Can't accept negative numbers"
+        conversion = CryptoValue().convert_crypto_currency(src=src, dest=dest, amount=amount)
+        await ctx.send(f'Conversion result: {conversion}')
 
 
 bot.run(TOKEN)
