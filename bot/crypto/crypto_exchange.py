@@ -17,6 +17,7 @@ class CryptoValue():
         self.live_data_url = url("data")
         self.conversion_endpoint = url("conversion")
         self.crypto_values = []
+        self.get_live_data()
 
     def curr_dict(self) -> list:
         curr = ["BTC", "ADA", "ETH", "DOGE"]
