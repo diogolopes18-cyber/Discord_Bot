@@ -105,26 +105,29 @@ async def britney(ctx):
 
 @bot.command()
 @commands.has_role("Board")
-async def new(ctx, arg1, arg2):
+async def new(ctx, channel_type, name):
 
-    if(arg1 == "" or arg2 == ""):
+    if(channel_type == "" or name == ""):
         await ctx.send("Need to specify a command\n")
 
     try:
-        if(arg1 == "voice"):
-            await ctx.guild.create_voice_channel(arg2)
+        if(channel_type == "voice"):
+            await ctx.guild.create_voice_channel(name)
+            await ctx.send(f'Voice channel {name} has been created')
 
-        elif(arg1 == "text"):
-            await ctx.guild.create_text_channel(arg2)
+        elif(channel_type == "text"):
+            await ctx.guild.create_text_channel(name)
+            await ctx.send(f'Text channel {name} has been created')
 
-        elif(arg1 == "category"):
-            await ctx.guild.create_category(arg2, overwrites=None, reason=None)
+        elif(channel_type == "category"):
+            await ctx.guild.create_category(name, overwrites=None, reason=None)
+            await ctx.send(f'{name} category has been created')
 
         # Add new role inside server
-        elif(arg1 == "role"):
+        elif(channel_type == "role"):
             # Select color
             color = random.choice(colors)
-            role_name = await ctx.guild.create_role(name=arg2, colour=color)
+            role_name = await ctx.guild.create_role(name=name, colour=color)
             await ctx.send(f'Role {role_name} has been created')
 
     except Exception as error:
