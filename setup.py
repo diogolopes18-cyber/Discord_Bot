@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='bot',
-    author='Diogo Lopes & Ivan Pinto',
+    author='Diogo Lopes & Ivan Pinto & Luís Araújo',
     version='1.0.0',
     packages=['bot'],
     install_requires=['python-dotenv==0.15.0',
