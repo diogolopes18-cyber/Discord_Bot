@@ -14,11 +14,12 @@ url_request = "https://newsapi.org/v2/top-headlines"
 
 
 class getNews():
-    def __init__(self, country):
+    def __init__(self, country, topic=None):
         self.relevance = "popularity"
         self.country = country
         self.key = API_KEY
         self.arr = []
+        self.topic = topic
 
         if(self.topic != None):
             self.get_news_by_topic()
