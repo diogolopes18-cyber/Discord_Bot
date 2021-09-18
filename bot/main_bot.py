@@ -113,22 +113,22 @@ async def new(ctx, channel_type, name):
     try:
         if(channel_type == "voice"):
             await ctx.guild.create_voice_channel(name)
-            await ctx.send(f'Voice channel {name} has been created')
+            await ctx.send(f'`Voice channel {name} has been created`')
 
         elif(channel_type == "text"):
             await ctx.guild.create_text_channel(name)
-            await ctx.send(f'Text channel {name} has been created')
+            await ctx.send(f'`Text channel {name} has been created`')
 
         elif(channel_type == "category"):
             await ctx.guild.create_category(name, overwrites=None, reason=None)
-            await ctx.send(f'{name} category has been created')
+            await ctx.send(f'`{name} category has been created`')
 
         # Add new role inside server
         elif(channel_type == "role"):
             # Select color
             color = random.choice(colors)
             role_name = await ctx.guild.create_role(name=name, colour=color)
-            await ctx.send(f'Role {role_name} has been created')
+            await ctx.send(f'`Role {role_name} has been created`')
 
     except Exception as error:
         print("Bot error")
@@ -173,7 +173,8 @@ async def news(ctx, cnt=None, topic_choice=None):
         result = getNews().get_news_by_topic(topic=topic_choice)
         return ctx.send(f'Here are the news about {topic_choice}:\n\n{result}')
 
-    await ctx.send(f'```Here are the news:\n\n{result}```')
+    format_result = "Here are the news\n\n>>> {}".format(result)
+    await ctx.send(format_result)
 
 
 @bot.command()
@@ -183,7 +184,7 @@ async def weather(ctx, place):
     """
 
     weather_result = getCurrentWeather(location=place)
-    await ctx.send(f'Here it is\n {weather_result}')
+    await ctx.send(f'Here it is\n{weather_result}')
 
 
 @bot.command()
