@@ -41,8 +41,10 @@ class CryptoValue():
 
             #Returns the value for each one of the currencies
             for data in currencies:
-                result = request[data]["rates"][data]
+                result = request["rates"][data]
                 self.crypto_values.append(result)
+            
+            print(self.crypto_values)
 
         elif(self.currency != None):
 
@@ -81,3 +83,5 @@ class CryptoValue():
         assert type(conversion_result) == int, "No available return"
 
         return conversion_result
+
+CryptoValue()
