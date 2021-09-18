@@ -19,8 +19,8 @@ class CryptoValue():
         self.crypto_values = []
         self.get_live_data()
 
-    def curr_dict(self) -> list:
-        curr = ["BTC", "ADA", "ETH", "DOGE"]
+    def curr_dict(self) -> tuple:
+        curr = ("BTC", "ADA", "ETH", "DOGE")
         return curr
 
     def get_live_data(self):
@@ -28,18 +28,20 @@ class CryptoValue():
         Returns the live rates of cryptocurrency
         '''
 
+        currencies = self.curr_dict()
+
         #Returns main cryptocurrency data
         if(self.currency == None):
 
             request_params = {
                 "access_key": self.key,
-                "symbols": self.curr_dict()
             }
 
             request = requests.get(self.live_data_url, params=request_params).json()
 
-            for data in request:
-                result = request[data]["rates"]
+            #Returns the value for each one of the currencies
+            for data in currencies:
+                result = request[data]["rates"][data]
                 self.crypto_values.append(result)
 
         elif(self.currency != None):
@@ -62,7 +64,6 @@ class CryptoValue():
         '''
 
         available_coins = ["€", "$"]
-        assert conversion in available_coins, "No conversion available for the specified coin"
 
         #Conversion
         conversion_parameters = {
