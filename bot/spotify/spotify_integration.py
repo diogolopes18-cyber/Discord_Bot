@@ -35,4 +35,3 @@ class MediaPlayer():
         '''
         Fixes the bitrate while playing to adjust to the OS's needs
         '''
-

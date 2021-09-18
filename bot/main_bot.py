@@ -31,7 +31,7 @@ bot = commands.Bot(command_prefix="!")
 
 @bot.event
 async def on_ready():
-    print(f'{bot.user} has connected to Discord!\n')
+    print("%s has connected to Discord!\n" % bot.user)
 
     for i in bot.guilds:
         # Checks if the server name is the one we provided
@@ -200,6 +200,24 @@ async def crypto(ctx, src=None, dest=None, amount=None):
         assert amount > 0, "Can't accept negative numbers"
         conversion = CryptoValue().convert_crypto_currency(src=src, dest=dest, amount=amount)
         await ctx.send(f'Conversion result: {conversion}')
+
+
+###############
+##  SPOTIFY  ##
+###############
+# @bot.command()
+# async def play(ctx, link=None):
+#     """
+#     Plays music from provided URL
+#     """
+
+#     import validators
+
+#     assert validators.url(link) != False, "Not a valid URL"
+
+#     command = MediaPlayer()
+
+
 
 
 bot.run(TOKEN)
