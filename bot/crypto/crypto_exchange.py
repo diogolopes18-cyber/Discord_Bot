@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 from bot.crypto.urls import url as url
 
 load_dotenv()
-API_KEY = os.getenv("API_KEY")
+API_KEY = os.getenv("KEY")
 
 class CryptoValue():
     def __init__(self, currency=None):
@@ -44,7 +44,7 @@ class CryptoValue():
                 result = request["rates"][data]
                 self.crypto_values.append(result)
             
-            print(self.crypto_values)
+            return self.crypto_values
 
         elif(self.currency != None):
 
@@ -84,4 +84,6 @@ class CryptoValue():
 
         return conversion_result
 
-CryptoValue()
+    
+    def __repr__(self) -> str:
+        return self.crypto_values
