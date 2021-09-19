@@ -56,7 +56,7 @@ class CryptoValue():
             curr_request = requests.get(self.live_data_url, params=request_params).json()
 
             for curr in curr_request:
-                result = curr_request[curr]["rates"]
+                result = curr_request[curr]["rates"][self.currency]
 
             return result
 
@@ -85,5 +85,5 @@ class CryptoValue():
         return conversion_result
 
     
-    def __repr__(self) -> str:
-        return self.crypto_values
+    def __repr__(self):
+        return str(self.crypto_values)
