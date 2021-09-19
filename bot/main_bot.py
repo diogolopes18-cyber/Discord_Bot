@@ -188,19 +188,27 @@ async def weather(ctx, place):
 
 
 @bot.command()
-async def crypto(ctx, src=None, dest=None, amount=None):
+async def crypto(ctx, custom_curr=None):
     """
     Retrieves cryptocurrency information
     """
 
-    if(src == None):
+    if(custom_curr == None):
         result = CryptoValue()
-        await ctx.send(f'The current cryptocurrency values are {result}')
+        format_result = "The current cryptocurrency values are\n>>> {}".format(result)
+        await ctx.send(format_result)
+    
+    elif(custom_curr):
+        result = CryptoValue(currency=custom_curr)
+        format_result = "The current cryptocurrency values are\n>>> {}".format(result)
+        await ctx.send(format_result)
 
-    elif(src != None):
-        assert amount > 0, "Can't accept negative numbers"
-        conversion = CryptoValue().convert_crypto_currency(src=src, dest=dest, amount=amount)
-        await ctx.send(f'Conversion result: {conversion}')
+
+    #TODO: add to another function
+    # elif(src != None):
+    #     assert amount > 0, "Can't accept negative numbers"
+    #     conversion = CryptoValue().convert_crypto_currency(src=src, dest=dest, amount=amount)
+    #     await ctx.send(f'Conversion result: {conversion}')
 
 
 ###############
