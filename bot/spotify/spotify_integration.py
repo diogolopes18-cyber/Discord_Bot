@@ -28,7 +28,6 @@ class MediaPlayer():
 
         self.auth_manager=SpotifyOAuth(client_id=self.client_id_spotify, client_secret= self.client_secret_id, redirect_uri=self.redirect_uri)
         self.token_info=self.auth_manager.get_cached_token()
-        #self.authorizationFlow()
 
     def authorizationFlow(self):
         if(self.auth_manager.is_token_expired(self.token_info)):
