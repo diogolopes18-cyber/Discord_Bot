@@ -21,6 +21,12 @@ from bot.crypto.crypto_exchange import CryptoValue
 
 colors = available_colors.dict_colors()
 
+#########################
+##  SPOTIFY VARIABLES  ##
+#########################
+
+queues={}
+
 #####################
 ##  ENV VARIABLES  ##
 #####################
@@ -214,17 +220,38 @@ async def crypto(ctx, custom_curr=None):
 ###############
 ##  SPOTIFY  ##
 ###############
-# @bot.command()
-# async def play(ctx, link=None):
-#     """
-#     Plays music from provided URL
-#     """
+@bot.command(pass_context=True)
+async def play(ctx, *, url=None):
 
-#     import validators
 
-#     assert validators.url(link) != False, "Not a valid URL"
+    if(url==None):
+        await ctx.send("You need choose a music!")
+        return
 
-#     command = MediaPlayer()
+    if hasattr(ctx.author.voice, 'channel') == False:
+        await ctx.send("You need to join a channel to play music!")
+        return
+    else:
+        channel= ctx.message.author.voice.channel    
+    if ctx.voice_client is None:
+        await channel.connect()
+        sp_Player=MediaPlayer()
+        sp_Player.authorizationFlow()
+    
+    voice = ctx.guild.voice_client
+
+
+
+@bot.command(pass_context=True)
+async def leave(ctx):
+    if(ctx.voice_client):
+        await ctx.guild.voice_client.disconnect()
+        await ctx.send("I left the voice chat")
+        if ctx.message.guild.id in queues:
+            del queues[ctx.message.guild.id]
+    else:
+        await ctx.send("I'm not in a voice channel!")
+
 
 
 
