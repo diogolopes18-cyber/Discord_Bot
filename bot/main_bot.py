@@ -18,6 +18,7 @@ from bot.news.news import getNews
 import bot.colors.colors as available_colors
 from bot.weather.get_weather import getCurrentWeather
 from bot.crypto.crypto_exchange import CryptoValue
+from spotify_integration import MediaPlayer
 
 colors = available_colors.dict_colors()
 
