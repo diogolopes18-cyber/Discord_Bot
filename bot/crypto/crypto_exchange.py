@@ -19,7 +19,8 @@ class CryptoValue():
         self.crypto_values = []
         self.get_live_data()
 
-    def curr_dict(self) -> tuple:
+    @staticmethod
+    def curr_dict() -> tuple:
         curr = ("BTC", "ADA", "ETH", "DOGE")
         return curr
 
