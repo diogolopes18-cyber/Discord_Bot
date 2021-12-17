@@ -46,7 +46,11 @@ class CryptoValue():
             
             return self.crypto_values
 
-        elif(self.currency != None):
+            curr = {
+                'BTC': None,
+                'ADA': None,
+                'ETH': None
+            }
 
             request_params = {
                 "access_key": self.key,
