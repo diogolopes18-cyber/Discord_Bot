@@ -29,6 +29,7 @@ class CryptoValue():
         Returns the live rates of cryptocurrency
         '''
 
+        crypto_values = list()
         currencies = self.curr_dict()
 
         #Returns main cryptocurrency data
