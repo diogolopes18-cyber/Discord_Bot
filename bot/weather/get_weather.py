@@ -41,11 +41,9 @@ class getCurrentWeather():
         substr = emoji()
 
         # Looks for a correspondence between the returned weather and an emoji
-        for key in substr.keys():
-            split_string = weather_list.split()
-            for word in split_string:
-                if(word == key):
-                    corresponding_emoji = substr[key]
+        for key in weather_emojis.keys():
+            if(weather_list.find(key) != -1):
+                corresponding_emoji = weather_emojis[key]
 
         return f'The weather is gonna be {weather_list} {corresponding_emoji}'
 
