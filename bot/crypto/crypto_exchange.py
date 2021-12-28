@@ -42,42 +42,32 @@ class CryptoValue:
         Returns the live rates of cryptocurrency
         '''
 
+        request = self.request_all_coins()
         crypto_values = list()
-        currencies = self.curr_dict()
+        curr = {
+            "BTC": 0,
+            "ADA": 0,
+            "ETH": 0,
+            "DOGE": 0
+        }
 
         # Returns main cryptocurrency data
         if(self.currency == None):
 
-            request_params = {
-                "access_key": self.key,
-            }
-
-            request = requests.get(
-                self.live_data_url, params=request_params).json()
-
             # Returns the value for each one of the currencies
-            for data in currencies:
+            for data in curr.keys():
                 result = request["rates"][data]
                 crypto_values.append(result)
 
-            return crypto_values
+            for i in curr.keys():
+                for val in crypto_values:
+                    curr[i] = val
+
+            return curr
 
         else:
 
-            curr = {
-                'BTC': None,
-                'ADA': None,
-                'ETH': None
-            }
-
-            request_params = {
-                "access_key": self.key,
-                "symbols": self.currency
-            }
-
-            curr_request = requests.get(
-                self.live_data_url, params=request_params).json()
-
+            curr_request = self.request_specific_coin()
             for curr in curr_request:
                 result = curr_request[curr]["rates"][self.currency]
 
@@ -103,6 +93,3 @@ class CryptoValue:
             conversion_result = conversion[data]["result"]
 
         return conversion_result
-
-    def __repr__(self):
-        return self.get_live_data()
