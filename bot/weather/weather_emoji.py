@@ -10,6 +10,4 @@ def emojis() -> dict:
         "rain": u'\U0001F327'
     }
 
-    assert type(WEATHER_EMOJIS) == dict, "No dict format"
-
     return WEATHER_EMOJIS
