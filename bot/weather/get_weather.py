@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
 
 import requests
-import json
 import os
-from dotenv import load_dotenv
-from weather_emoji import emojis as emoji
+from dotenv import load_dotenv, main
+from bot.weather.weather_emoji import emojis as emoji
 
+#####################
+##  ENV VARIABLES  ##
+#####################
 load_dotenv()
 API_KEY = os.getenv('API_KEY')
 
 
-class getCurrentWeather():
+class CurrentWeather():
     _weather_results = []
 
     def __init__(self, location):
@@ -36,18 +38,16 @@ class getCurrentWeather():
 
     def associate_emoji_with_weather(self):
         weather_list = self.weather_location()[0].lower()
-        substr = emoji()
+        weather_emojis = emoji()
 
         # Looks for a correspondence between the returned weather and an emoji
-        for key in substr.keys():
-            split_string = weather_list.split()
-            for word in split_string:
-                if(word == key):
-                    corresponding_emoji = substr[key]
+        for key in weather_emojis.keys():
+            if(weather_list.find(key) != -1):
+                corresponding_emoji = weather_emojis[key]
 
         return f'The weather is gonna be {weather_list} {corresponding_emoji}'
 
-class getForecast():
+class Forecast():
     def __init__(self, place, days=16):
         self.key = API_KEY
         self.place = place
@@ -76,5 +76,3 @@ class getForecast():
             forecast_default_days = requests.get(self.url, params=request_forecast_params)
 
             return forecast_default_days
-        
-        

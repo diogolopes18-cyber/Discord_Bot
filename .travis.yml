@@ -11,9 +11,10 @@ jobs:
       - echo "Initializing build"
       - python -m pip install --upgrade pip
     install:
-      - pip3 install -r requirements.txt
+      - pip3 install -e .
 
     script:
-      - ./bot/bot.py
+      - python bot/crypto/crypto_exchange.py
+      - python bot/weather/get_weather.py
     after_success:
       - echo "SUCCESS"

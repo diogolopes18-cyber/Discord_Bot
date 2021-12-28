@@ -1,8 +1,6 @@
 #!/usr/bin/env
 
 import discord
-from discord import colour
-
 
 def dict_colors() -> dict:
 

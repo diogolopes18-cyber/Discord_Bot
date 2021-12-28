@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import os
-import json
 import requests
 from dotenv import load_dotenv
 
@@ -17,9 +16,9 @@ class getNews():
     def __init__(self, country, topic=None):
         self.relevance = "popularity"
         self.country = country
-        self.topic = topic
         self.key = API_KEY
         self.arr = []
+        self.topic = topic
 
         if(self.topic != None):
             self.get_news_by_topic()
@@ -44,12 +43,12 @@ class getNews():
     ######################
     ##  IN DEVELOPMENT  ##
     ######################
-    def get_news_by_topic(self):
+    def get_news_by_topic(self, topic):
 
         params_request_topic = {
             "country": self.country,
             "apiKey": self.key,
-            "topic": self.topic
+            "q": topic
         }
 
         result_topic = requests.get(url_request, params=params_request_topic).json()

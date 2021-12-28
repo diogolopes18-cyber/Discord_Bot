@@ -6,44 +6,32 @@ __email__ = "diogolopes18@ieee.org"
 
 import os
 import discord
-import asyncio
-from discord import colour
-from dotenv import load_dotenv
 from discord.ext import commands
+import asyncio
+
+from dotenv import load_dotenv
 import random
 import wikipedia as wk
-from pkgutil import iter_modules
-
-from news import getNews
-import colors as available_colors
-
-from weather.get_weather import getCurrentWeather
-
-modules = set(x[1] for x in iter_modules())
-colors = available_colors.dict_colors()
-
-
-load_dotenv()
-TOKEN = os.getenv('DISCORD_TOKEN')
-# Get the server name
-GUILD = os.getenv('DISCORD_GUILD')
-# Sets up bot prefix
-bot = commands.Bot(command_prefix="!")
-# Set Wikipedia language
 wiki_language = wk.set_lang("en")
 
+from bot.news.news import getNews
+import bot.colors.colors as available_colors
+from bot.weather.get_weather import CurrentWeather
+from bot.crypto.crypto_exchange import CryptoValue
 
-def check_for_modules():
-    with open('requirements.txt', 'rb') as f:
-        for line in f:
-            requirement = line.rstrip()
-            if not requirement in modules:
-                os.system("pip3 install -r requeriments.txt")
+colors = available_colors.dict_colors()
 
+#####################
+##  ENV VARIABLES  ##
+#####################
+load_dotenv()
+TOKEN = os.getenv('DISCORD_TOKEN')
+GUILD = os.getenv('DISCORD_GUILD')
+bot = commands.Bot(command_prefix="!")
 
 @bot.event
 async def on_ready():
-    print(f'{bot.user} has connected to Discord!\n')
+    print("%s has connected to Discord!\n" % bot.user)
 
     for i in bot.guilds:
         # Checks if the server name is the one we provided
@@ -117,27 +105,30 @@ async def britney(ctx):
 
 @bot.command()
 @commands.has_role("Board")
-async def new(ctx, arg1, arg2):
+async def new(ctx, channel_type, name):
 
-    if(arg1 == "" or arg2 == ""):
+    if(channel_type == "" or name == ""):
         await ctx.send("Need to specify a command\n")
 
     try:
-        if(arg1 == "voice"):
-            await ctx.guild.create_voice_channel(arg2)
+        if(channel_type == "voice"):
+            await ctx.guild.create_voice_channel(name)
+            await ctx.send(f'`Voice channel {name} has been created`')
 
-        elif(arg1 == "text"):
-            await ctx.guild.create_text_channel(arg2)
+        elif(channel_type == "text"):
+            await ctx.guild.create_text_channel(name)
+            await ctx.send(f'`Text channel {name} has been created`')
 
-        elif(arg1 == "category"):
-            await ctx.guild.create_category(arg2, overwrites=None, reason=None)
+        elif(channel_type == "category"):
+            await ctx.guild.create_category(name, overwrites=None, reason=None)
+            await ctx.send(f'`{name} category has been created`')
 
         # Add new role inside server
-        elif(arg1 == "role"):
+        elif(channel_type == "role"):
             # Select color
             color = random.choice(colors)
-            role_name = await ctx.guild.create_role(name=arg2, colour=color)
-            await ctx.send(f'Role {role_name} has been created')
+            role_name = await ctx.guild.create_role(name=name, colour=color)
+            await ctx.send(f'`Role {role_name} has been created`')
 
     except Exception as error:
         print("Bot error")
@@ -173,11 +164,17 @@ async def news(ctx, cnt=None, topic_choice=None):
     """
 
     if(cnt == None):
-        result = getNews(country="us")
+        result = getNews(country="pt")
     else:
         result = getNews(country=cnt)
 
-    await ctx.send(f'```Here are the news:\n\n{result}```')
+    #Returns news about certain topic
+    if(topic_choice != None):
+        result = getNews().get_news_by_topic(topic=topic_choice)
+        return ctx.send(f'Here are the news about {topic_choice}:\n\n{result}')
+
+    format_result = "Here are the news\n\n>>> {}".format(result)
+    await ctx.send(format_result)
 
 
 @bot.command()
@@ -186,10 +183,25 @@ async def weather(ctx, place):
     Retrieves weather from location
     """
 
-    assert place != None, "Must provide a location"
+    weather_result = CurrentWeather(location=place).associate_emoji_with_weather()
+    await ctx.send(f'Weather for {place}\n{weather_result}')
 
-    weather_result = getCurrentWeather(location=place)
-    await ctx.send(f'Here it is\n {weather_result}')
+
+@bot.command()
+async def crypto(ctx, custom_curr=None):
+    """
+    Retrieves cryptocurrency information
+    """
+
+    if(custom_curr == None):
+        result = CryptoValue().get_live_data()
+        format_result = "The current cryptocurrency values are\n>>> {}".format(result)
+        await ctx.send(format_result)
+    
+    elif(custom_curr):
+        result = CryptoValue(currency=custom_curr).get_live_data()
+        format_result = "The current cryptocurrency values are\n>>> {}".format(result)
+        await ctx.send(format_result)
 
 
 bot.run(TOKEN)
