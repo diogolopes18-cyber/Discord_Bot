@@ -1,0 +1,16 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+python-dotenv = "==0.15.0"
+asyncio = "==3.4.3"
+discord = "==1.7.3"
+requests = "==2.22.0"
+wikipedia = "==1.4.0"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
