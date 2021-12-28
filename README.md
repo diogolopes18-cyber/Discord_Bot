@@ -22,6 +22,7 @@ IEEE ISEP Student Branch Discord server bot for automating some processes like c
 
 - `!news` &rarr; returns the top news of the day from Portugal
 - `!news <country>` &rarr; returns the top news of the day for the specified country
+- `!news <topic>` &rarr; return the top news of the day for a specific topic
 
 ### Weather ☁️
 
