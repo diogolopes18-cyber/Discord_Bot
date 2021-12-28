@@ -88,5 +88,5 @@ class CryptoValue:
 
         return conversion_result
 
-    def __repr__(self) -> str:
+    def __repr__(self):
         return self.get_live_data()
