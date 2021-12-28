@@ -14,7 +14,7 @@ jobs:
       - pip3 install -e .
 
     script:
-      - ./bot/crypto/crypto_exchange.py
-      - ./bot/weather/get_weather.py
+      - python /bot/crypto/crypto_exchange.py
+      - python /bot/weather/get_weather.py
     after_success:
       - echo "SUCCESS"
