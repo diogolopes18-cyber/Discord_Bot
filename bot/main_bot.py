@@ -16,7 +16,7 @@ wiki_language = wk.set_lang("en")
 
 from bot.news.news import getNews
 import bot.colors.colors as available_colors
-from bot.weather.get_weather import getCurrentWeather
+from bot.weather.get_weather import CurrentWeather
 from bot.crypto.crypto_exchange import CryptoValue
 
 colors = available_colors.dict_colors()
@@ -183,8 +183,8 @@ async def weather(ctx, place):
     Retrieves weather from location
     """
 
-    weather_result = getCurrentWeather(location=place)
-    await ctx.send(f'Here it is\n{weather_result}')
+    weather_result = CurrentWeather(location=place).associate_emoji_with_weather()
+    await ctx.send(f'Weather for {place}\n{weather_result}')
 
 
 @bot.command()
@@ -202,31 +202,6 @@ async def crypto(ctx, custom_curr=None):
         result = CryptoValue(currency=custom_curr)
         format_result = "The current cryptocurrency values are\n>>> {}".format(result)
         await ctx.send(format_result)
-
-
-    #TODO: add to another function
-    # elif(src != None):
-    #     assert amount > 0, "Can't accept negative numbers"
-    #     conversion = CryptoValue().convert_crypto_currency(src=src, dest=dest, amount=amount)
-    #     await ctx.send(f'Conversion result: {conversion}')
-
-
-###############
-##  SPOTIFY  ##
-###############
-# @bot.command()
-# async def play(ctx, link=None):
-#     """
-#     Plays music from provided URL
-#     """
-
-#     import validators
-
-#     assert validators.url(link) != False, "Not a valid URL"
-
-#     command = MediaPlayer()
-
-
 
 
 bot.run(TOKEN)
