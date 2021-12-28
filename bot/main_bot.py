@@ -194,12 +194,12 @@ async def crypto(ctx, custom_curr=None):
     """
 
     if(custom_curr == None):
-        result = CryptoValue()
+        result = CryptoValue().get_live_data()
         format_result = "The current cryptocurrency values are\n>>> {}".format(result)
         await ctx.send(format_result)
     
     elif(custom_curr):
-        result = CryptoValue(currency=custom_curr)
+        result = CryptoValue(currency=custom_curr).get_live_data()
         format_result = "The current cryptocurrency values are\n>>> {}".format(result)
         await ctx.send(format_result)
 
