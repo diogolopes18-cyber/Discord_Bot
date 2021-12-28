@@ -9,15 +9,30 @@ IEEE ISEP Student Branch Discord server bot for automating some processes like c
 
 # Usage
 
-**1. Basic Commands**
+## Basic Commands
 
-- ```!info``` returns information about the server like its owner and numbr of members
-- ```!new <channel_type> <channel_name>``` creates a text or voice channel depending on the second argument value
-- ```!search <question>``` searches for a specific topic and returns the answer from Wikipedia
-- ```!news``` returns the top news of the day from a specified country
-- ```!channel_txt``` creates a text channel with a random name
+### Channel 📺
 
-**2. Upcoming features**
+- `!info` &rarr; information about the server like its owner and number of members
+- `!new <channel_type> <channel_name>` &rarr; creates a text or voice channel depending on the second argument value
+- `!search <question>` &rarr; searches for a specific topic and returns the answer from Wikipedia
+- `!channel_txt` &rarr; creates a text channel with a random name
+
+### News 📰
+
+- `!news` &rarr; returns the top news of the day from Portugal
+- `!news <country>` &rarr; returns the top news of the day for the specified country
+
+### Weather ☁️
+
+- `!weather <location>` &rarr; returns the weather for a specific location
+
+### Crypto 💰
+
+- `!crypto` &rarr; returns the value of four main crypto currencies: **BTC**, **ETH**, **ADA** and **DOGE**
+- `!crypto <coin>` &rarr; returns the value of a specific coin
+
+# Upcoming features
 
 - **Twitch integration** in order for a user to get information about a specific streamer in their DMs
 - **Moderation measures** such as spam control
