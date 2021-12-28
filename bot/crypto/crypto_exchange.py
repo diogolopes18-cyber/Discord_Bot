@@ -1,17 +1,15 @@
 #!/usr/bin/env python3
 
 import requests
-import json
 import os
 from dotenv import load_dotenv
-
 from bot.crypto.urls import url as url
 
 load_dotenv()
 API_KEY = os.getenv("KEY")
 
 
-class CryptoValue():
+class CryptoValue:
     def __init__(self, currency=None):
         self.key = API_KEY
         self.currency = currency
@@ -19,7 +17,7 @@ class CryptoValue():
         self.conversion_endpoint = url("conversion")
 
     @staticmethod
-    def curr_dict() -> tuple:
+    def curr_dict():
         curr = ("BTC", "ADA", "ETH", "DOGE")
         return curr
 
@@ -29,7 +27,6 @@ class CryptoValue():
         '''
 
         crypto_values = list()
-
         currencies = self.curr_dict()
 
         # Returns main cryptocurrency data
@@ -75,8 +72,6 @@ class CryptoValue():
         Converts crypto currency into the desired coin
         '''
 
-        available_coins = ["€", "$"]
-
         # Conversion
         conversion_parameters = {
             "access_key": self.key,
@@ -91,6 +86,7 @@ class CryptoValue():
         for data in conversion:
             conversion_result = conversion[data]["result"]
 
-        assert type(conversion_result) == int, "No available return"
-
         return conversion_result
+
+    def __repr__(self) -> str:
+        return self.get_live_data()
