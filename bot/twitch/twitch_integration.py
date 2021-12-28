@@ -14,7 +14,7 @@ class twitchFetchStream():
     Checks if a stream is valid or if the streamer exists
     """
     def __init__(self, streamer):
-        self.apikey = api_key
+        self.apikey = API_KEY
 
 
 class embbedStream(twitchFetchStream):
