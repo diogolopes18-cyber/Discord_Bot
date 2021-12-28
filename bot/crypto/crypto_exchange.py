@@ -16,10 +16,26 @@ class CryptoValue:
         self.live_data_url = url("data")
         self.conversion_endpoint = url("conversion")
 
-    @staticmethod
-    def curr_dict():
-        curr = ("BTC", "ADA", "ETH", "DOGE")
-        return curr
+    def request_all_coins(self):
+        request_params = {
+            "access_key": self.key,
+        }
+
+        request = requests.get(
+            self.live_data_url, params=request_params).json()
+
+        return request
+
+    def request_specific_coin(self):
+        request_params = {
+            "access_key": self.key,
+            "symbols": self.currency
+        }
+
+        curr_request = requests.get(
+            self.live_data_url, params=request_params).json()
+
+        return curr_request
 
     def get_live_data(self):
         '''
