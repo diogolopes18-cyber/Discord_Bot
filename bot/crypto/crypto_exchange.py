@@ -68,8 +68,7 @@ class CryptoValue:
         else:
 
             curr_request = self.request_specific_coin()
-            for curr in curr_request:
-                result = curr_request[curr]["rates"][self.currency]
+            result = curr_request["rates"][self.currency]
 
             return result
 
@@ -93,3 +92,8 @@ class CryptoValue:
             conversion_result = conversion[data]["result"]
 
         return conversion_result
+
+if __name__ == "__main__":
+    obj = CryptoValue(currency="BTC")
+    result = obj.get_live_data()
+    print(result)
