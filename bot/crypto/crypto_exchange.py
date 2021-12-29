@@ -92,8 +92,3 @@ class CryptoValue:
             conversion_result = conversion[data]["result"]
 
         return conversion_result
-
-if __name__ == "__main__":
-    obj = CryptoValue(currency="BTC")
-    result = obj.get_live_data()
-    print(result)
