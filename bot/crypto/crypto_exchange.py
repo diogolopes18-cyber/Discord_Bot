@@ -68,8 +68,7 @@ class CryptoValue:
         else:
 
             curr_request = self.request_specific_coin()
-            for curr in curr_request:
-                result = curr_request[curr]["rates"][self.currency]
+            result = curr_request["rates"][self.currency]
 
             return result
 
