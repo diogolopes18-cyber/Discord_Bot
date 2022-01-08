@@ -63,3 +63,22 @@ class SearchChannel:
             return True
         else:
             return False
+        
+class StreamInformation(SearchChannel):
+    def __init__(self, channel_name):
+        super().__init__(channel_name)
+    
+    def get_stream_information(self):
+        '''
+        Returns information about the current stream
+        Game name, streamer name and stream language
+        '''
+
+        if(self.channel_exists() == True and self.is_channel_live() == True):
+            stream_info = {
+                "streamer_name": self.channel_search()["data"][0]["broadcaster_login"],
+                "stream_language": self.channel_search()["data"][0]["broadcaster_language"],
+                "game_name": self.channel_search()["data"][0]["game_name"]
+            }
+
+            return stream_info
