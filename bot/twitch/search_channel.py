@@ -41,3 +41,12 @@ class SearchChannel:
                                auth=self.build_header()).json()
         
         return request
+
+    def channel_exists(self):
+
+        request = self.channel_search()
+
+        if(request["data"][0]["broadcaster_login"] == self.channel):
+            return True
+        else:
+            return False
