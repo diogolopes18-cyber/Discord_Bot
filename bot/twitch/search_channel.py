@@ -50,3 +50,16 @@ class SearchChannel:
             return True
         else:
             return False
+        
+    
+    def is_channel_live(self) -> bool:
+        '''
+        Checks if the current channel is live
+        '''
+
+        request = self.channel_search()
+
+        if(request["data"][0]["is_live"] == self.channel):
+            return True
+        else:
+            return False
