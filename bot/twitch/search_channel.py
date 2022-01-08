@@ -9,6 +9,11 @@ API_KEY = os.getenv("CLIENT_SECRET")
 CLIENT_ID = os.getenv("CLIENT_ID")
 URL = os.getenv("API_URL")
 
+
+class ChannelIsNotLive(Exception):
+    pass
+    
+
 class SearchChannel:
     def __init__(self, channel_name):
         self.key = API_KEY
@@ -82,3 +87,7 @@ class StreamInformation(SearchChannel):
             }
 
             return stream_info
+        
+        else:
+            raise ChannelIsNotLive("Current channel is not live")
+
