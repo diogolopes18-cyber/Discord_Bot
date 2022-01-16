@@ -223,7 +223,7 @@ async def twitter_username(ctx, username):
     If the stream is live, what game is being played, the stream language
     """
 
-    result = SearchUsername(username=username)
-    await ctx.send(f'Here is the Twitter name of the username {username}: {result}')
+    result = SearchUsername(username=username).get_twitter_name()
+    await ctx.send(f'Here is the Twitter name of the username {username}:\n> {result}')
 
 bot.run(TOKEN)
