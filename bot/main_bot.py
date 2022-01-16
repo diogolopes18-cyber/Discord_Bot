@@ -19,6 +19,8 @@ import bot.colors.colors as available_colors
 from bot.weather.get_weather import CurrentWeather
 from bot.crypto.crypto_exchange import CryptoValue
 
+from twitch.twitch_integration import TwitchFetchStream
+
 colors = available_colors.dict_colors()
 
 #####################
@@ -177,6 +179,10 @@ async def news(ctx, cnt=None, topic_choice=None):
     await ctx.send(format_result)
 
 
+########################
+##  WEATHER COMMANDS  ##
+########################
+
 @bot.command()
 async def weather(ctx, place):
     """
@@ -186,6 +192,10 @@ async def weather(ctx, place):
     weather_result = CurrentWeather(location=place).associate_emoji_with_weather()
     await ctx.send(f'Weather for {place}\n{weather_result}')
 
+
+#######################
+##  CRYPTO COMMANDS  ##
+#######################
 
 @bot.command()
 async def crypto(ctx, custom_curr=None):
@@ -203,5 +213,23 @@ async def crypto(ctx, custom_curr=None):
         format_result = "The current cryptocurrency values are\n>>> {}".format(result)
         await ctx.send(format_result)
 
+
+#######################
+##  TWITCH COMMANDS  ##
+#######################
+
+@bot.command()
+async def twitch_stream(ctx, streamer_name):
+    """
+    Retrieves information about a stream
+    If the stream is live, what game is being played, the stream language
+    """
+
+    if(streamer_name != None):
+        result = TwitchFetchStream(streamer=streamer_name).search_streamer()
+        await ctx.send(result)
+    
+    else:
+        await ctx.send("You must provide a streamer name")
 
 bot.run(TOKEN)

@@ -11,5 +11,6 @@ setup(
                       'asyncio==3.4.3',
                       'discord==1.7.3',
                       'requests==2.22.0',
-                      'wikipedia==1.4.0']
+                      'wikipedia==1.4.0',
+                      'Flask==2.0.2']
 )
