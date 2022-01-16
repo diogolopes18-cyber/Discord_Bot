@@ -35,7 +35,7 @@ IEEE ISEP Student Branch Discord server bot for automating some processes like c
 
 # Upcoming features
 
-- **Twitch integration** in order for a user to get information about a specific streamer in their DMs
+- **Twitter integration** in order for a user to get information about a specific user, tweet or topic in their DMs
 - **Moderation measures** such as spam control
 - **Spotify suggestions**, users get the top Spotify playlist suggestions for a specific music genre
 
