@@ -12,7 +12,7 @@ URL = os.getenv("API_URL")
 
 class ChannelIsNotLive(Exception):
     pass
-    
+
 
 class SearchChannel:
     def __init__(self, channel_name):
@@ -44,8 +44,13 @@ class SearchChannel:
         request = requests.get(self.url,
                                params=self.build_params(),
                                auth=self.build_header()).json()
-        
+
         return request
+
+
+class StreamInformation(SearchChannel):
+    def __init__(self, channel_name):
+        super().__init__(channel_name)
 
     def channel_exists(self):
 
@@ -55,8 +60,7 @@ class SearchChannel:
             return True
         else:
             return False
-        
-    
+
     def is_channel_live(self) -> bool:
         '''
         Checks if the current channel is live
@@ -68,11 +72,7 @@ class SearchChannel:
             return True
         else:
             return False
-        
-class StreamInformation(SearchChannel):
-    def __init__(self, channel_name):
-        super().__init__(channel_name)
-    
+
     def get_stream_information(self):
         '''
         Returns information about the current stream
@@ -87,7 +87,6 @@ class StreamInformation(SearchChannel):
             }
 
             return stream_info
-        
+
         else:
             raise ChannelIsNotLive("Current channel is not live")
-
