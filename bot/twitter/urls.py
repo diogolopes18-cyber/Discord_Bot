@@ -8,4 +8,7 @@ class EndpointUrls:
             "search_user": f'https://api.twitter.com/2/users/by/username/{self.username}'
         }
 
-        return endpoints["search_user"]
+        if(self.endpoint == "search"):
+            return endpoints["search_user"]
+        
+        return "Endpoint not found"
