@@ -22,9 +22,6 @@ class SearchUsername:
             "Authorization": f'Bearer {self.api_token}'
         }
 
-        response = requests.get(url=self.url, headers=headers)
-
-        if(response.status_code != 200):
-            raise UserNotFound("Requested user does not exist")
+        response = requests.get(url=self.url, headers=headers).json()
 
         return response["data"]["name"]
