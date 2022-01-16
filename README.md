@@ -33,6 +33,10 @@ IEEE ISEP Student Branch Discord server bot for automating some processes like c
 - `!crypto` &rarr; returns the value of four main crypto currencies: **BTC**, **ETH**, **ADA** and **DOGE**
 - `!crypto <coin>` &rarr; returns the value of a specific coin
 
+### Twitter 🐦
+
+- `!twitter_username <username>` &rarr; returns the Twitter name for the requested username
+
 # Upcoming features
 
 - **Twitter integration** in order for a user to get information about a specific user, tweet or topic in their DMs
