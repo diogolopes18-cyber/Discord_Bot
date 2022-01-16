@@ -12,7 +12,7 @@ API_KEY = os.getenv('API_KEY')
 url_request = "https://newsapi.org/v2/top-headlines"
 
 
-class getNews():
+class GetNews():
     def __init__(self, country, topic=None):
         self.relevance = "popularity"
         self.country = country
