@@ -1,8 +1,8 @@
-#!/usr/bin/env python3
-
-__author__ = "Diogo Lopes"
-__license__ = "MIT"
-__email__ = "diogolopes18@ieee.org"
+from bot.twitter.user_search import SearchUsername
+from bot.crypto.crypto_exchange import CryptoValue
+from bot.weather.get_weather import CurrentWeather
+import bot.colors.colors as available_colors
+from bot.news.news import GetNews
 
 import os
 import discord
@@ -14,12 +14,6 @@ import random
 import wikipedia as wk
 wiki_language = wk.set_lang("en")
 
-from bot.news.news import getNews
-import bot.colors.colors as available_colors
-from bot.weather.get_weather import CurrentWeather
-from bot.crypto.crypto_exchange import CryptoValue
-
-from twitch.twitch_integration import TwitchFetchStream
 
 colors = available_colors.dict_colors()
 
@@ -30,6 +24,7 @@ load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
 bot = commands.Bot(command_prefix="!")
+
 
 @bot.event
 async def on_ready():
@@ -189,7 +184,8 @@ async def weather(ctx, place):
     Retrieves weather from location
     """
 
-    weather_result = CurrentWeather(location=place).associate_emoji_with_weather()
+    weather_result = CurrentWeather(
+        location=place).associate_emoji_with_weather()
     await ctx.send(f'Weather for {place}\n{weather_result}')
 
 
@@ -205,12 +201,14 @@ async def crypto(ctx, custom_curr=None):
 
     if(custom_curr == None):
         result = CryptoValue().get_live_data()
-        format_result = "The current cryptocurrency values are\n>>> {}".format(result)
+        format_result = "The current cryptocurrency values are\n>>> {}".format(
+            result)
         await ctx.send(format_result)
-    
+
     elif(custom_curr):
         result = CryptoValue(currency=custom_curr).get_live_data()
-        format_result = "The current cryptocurrency values are\n>>> {}".format(result)
+        format_result = "The current cryptocurrency values are\n>>> {}".format(
+            result)
         await ctx.send(format_result)
 
 
