@@ -214,22 +214,18 @@ async def crypto(ctx, custom_curr=None):
         await ctx.send(format_result)
 
 
-#######################
-##  TWITCH COMMANDS  ##
-#######################
+########################
+##  TWITTER COMMANDS  ##
+########################
 
 @bot.command()
-async def twitch_stream(ctx, streamer_name):
+async def twitter_username(ctx, username):
     """
     Retrieves information about a stream
     If the stream is live, what game is being played, the stream language
     """
 
-    if(streamer_name != None):
-        result = TwitchFetchStream(streamer=streamer_name).search_streamer()
-        await ctx.send(result)
-    
-    else:
-        await ctx.send("You must provide a streamer name")
+    result = SearchUsername(username=username)
+    await ctx.send(f'Here is the Twitter name of the username {username}: {result}')
 
 bot.run(TOKEN)
