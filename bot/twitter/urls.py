@@ -1,5 +1,5 @@
 class EndpointUrls:
-    def __init__(self, endpoint, username):
+    def __init__(self, endpoint, username=None):
         self.endpoint = endpoint
         self.username = username
 
