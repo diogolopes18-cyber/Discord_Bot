@@ -3,6 +3,7 @@ class EndpointUrls:
         self.endpoint = endpoint
         self.username = username
 
+    @property
     def get_endpoint(self):
         endpoints = {
             "search_user": f'https://api.twitter.com/2/users/by/username/{self.username}',
