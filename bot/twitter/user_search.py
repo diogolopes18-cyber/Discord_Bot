@@ -16,7 +16,7 @@ class SearchUsername:
     def __init__(self, username):
         self.username = username
         self.api_token = API_TOKEN
-        self.url = EndpointUrls(endpoint="search", username=self.username).get_endpoint()
+        self.url = EndpointUrls(endpoint="search", username=self.username).get_endpoint
 
     def get_twitter_name(self):
         headers = {
