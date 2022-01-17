@@ -11,6 +11,7 @@ API_TOKEN = os.getenv('TOKEN')
 class UserNotFound(Exception):
     pass
 
+
 class SearchUsername:
     def __init__(self, username):
         self.username = username

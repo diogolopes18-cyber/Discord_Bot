@@ -2,8 +2,8 @@
 
 def url(endpoint) -> str:
 
-    if(endpoint == "data"):
+    if endpoint == "data":
         return "http://api.coinlayer.com/live"
 
-    elif(endpoint == "conversion"):
+    elif endpoint == "conversion":
         return "http://api.coinlayer.com/convert"
