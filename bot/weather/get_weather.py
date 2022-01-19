@@ -37,7 +37,6 @@ class CurrentWeather:
         return self._weather_results
 
     def associate_emoji_with_weather(self):
-        global corresponding_emoji
         weather_list = self.weather_location()[0].lower()
         weather_emojis = emoji()
 
