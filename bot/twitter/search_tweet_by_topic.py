@@ -30,7 +30,7 @@ class TweetByTopic:
         tweets = self.get_recent_tweets_by_topic()
         tweets_content = []
 
-        for i in range(0,10):
+        for i in range(0, 10):
             tweets_content.append(tweets["data"][i]["text"])
 
         return tweets_content
