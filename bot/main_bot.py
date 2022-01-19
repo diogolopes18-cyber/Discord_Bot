@@ -226,4 +226,16 @@ async def twitter_username(ctx, username):
     await ctx.send(f'Here is the Twitter name of the username {username}:\n> {result}')
 
 
+@bot.command()
+async def tweets_topic(ctx, topic):
+    """
+    Retrieves the latest tweets for the requested topic
+    """
+
+    result = TweetByTopic(topic=topic).organize_tweets()
+
+    for i in result:
+        format_result = "\n>>> {}".format(i)
+        await ctx.send(format_result)
+
 bot.run(TOKEN)
