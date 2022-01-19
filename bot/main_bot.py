@@ -1,4 +1,5 @@
 from bot.twitter.user_search import SearchUsername
+from bot.twitter.search_tweet_by_topic import TweetByTopic
 from bot.crypto.crypto_exchange import CryptoValue
 from bot.weather.get_weather import CurrentWeather
 import bot.colors.colors as available_colors
