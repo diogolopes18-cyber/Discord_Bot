@@ -18,11 +18,14 @@ class SearchUsername:
         self.api_token = API_TOKEN
         self.url = EndpointUrls(endpoint="search", username=self.username).get_endpoint
 
-    def get_twitter_name(self):
+    def get_user(self):
         headers = {
             "Authorization": f'Bearer {self.api_token}'
         }
 
-        response = requests.get(url=self.url, headers=headers).json()
+        return requests.get(url=self.url, headers=headers).json()
 
-        return response["data"]["name"]
+    def get_twitter_name(self):
+        user = self.get_user()
+
+        return user["data"]["name"]
