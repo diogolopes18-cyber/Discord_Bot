@@ -27,5 +27,8 @@ class SearchUsername:
 
     def get_twitter_name(self):
         user = self.get_user()
-
         return user["data"]["name"]
+
+    def get_user_id(self):
+        user = self.get_user()
+        return user["data"]["id"]
