@@ -21,7 +21,7 @@ class GetNews:
         self.topic = topic
 
         if self.topic is not None:
-            self.get_news_by_topic()
+            self.get_news_by_topic(topic=self.topic)
         else:
             self.get_general_news()
 
