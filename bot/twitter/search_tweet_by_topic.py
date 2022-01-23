@@ -13,7 +13,7 @@ class TweetByTopic:
     def __init__(self, topic):
         self.token = API_TOKEN
         self.topic = topic
-        self.url = EndpointUrls(endpoint="tweet_by_topic", username=None).get_endpoint
+        self.url = EndpointUrls(endpoint="tweet_by_topic", username=None, user_id=None).get_endpoint
 
     def get_recent_tweets_by_topic(self):
         headers = {
