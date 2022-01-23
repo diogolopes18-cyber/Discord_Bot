@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 def emojis() -> dict:
-    WEATHER_EMOJIS = {
+    weather_emojis = {
         "clouds": u'\U00002601',
         "storm": u'\U0001F329',
         "sun": u'\U00002600',
@@ -10,4 +10,4 @@ def emojis() -> dict:
         "rain": u'\U0001F327'
     }
 
-    return WEATHER_EMOJIS
+    return weather_emojis

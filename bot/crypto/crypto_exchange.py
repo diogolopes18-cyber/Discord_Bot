@@ -37,10 +37,11 @@ class CryptoValue:
 
         return curr_request
 
+    @property
     def get_live_data(self):
-        '''
+        """
         Returns the live rates of cryptocurrency
-        '''
+        """
 
         request = self.request_all_coins()
         crypto_values = list()
@@ -52,7 +53,7 @@ class CryptoValue:
         }
 
         # Returns main cryptocurrency data
-        if(self.currency == None):
+        if self.currency is None:
 
             # Returns the value for each one of the currencies
             for data in curr.keys():
@@ -73,9 +74,9 @@ class CryptoValue:
             return result
 
     def convert_crypto_currency(self, src, dest, amount):
-        '''
+        """
         Converts crypto currency into the desired coin
-        '''
+        """
 
         # Conversion
         conversion_parameters = {

@@ -12,7 +12,7 @@ API_KEY = os.getenv('API_KEY')
 url_request = "https://newsapi.org/v2/top-headlines"
 
 
-class getNews():
+class GetNews:
     def __init__(self, country, topic=None):
         self.relevance = "popularity"
         self.country = country
@@ -20,8 +20,8 @@ class getNews():
         self.arr = []
         self.topic = topic
 
-        if(self.topic != None):
-            self.get_news_by_topic()
+        if self.topic is not None:
+            self.get_news_by_topic(topic=self.topic)
         else:
             self.get_general_news()
 
@@ -39,10 +39,7 @@ class getNews():
             self.arr.append(news)
 
         return self.arr
-    
-    ######################
-    ##  IN DEVELOPMENT  ##
-    ######################
+
     def get_news_by_topic(self, topic):
 
         params_request_topic = {

@@ -2,7 +2,7 @@
 
 import requests
 import os
-from dotenv import load_dotenv, main
+from dotenv import load_dotenv
 from bot.weather.weather_emoji import emojis as emoji
 
 #####################
@@ -12,7 +12,7 @@ load_dotenv()
 API_KEY = os.getenv('API_KEY')
 
 
-class CurrentWeather():
+class CurrentWeather:
     _weather_results = []
 
     def __init__(self, location):
@@ -42,26 +42,27 @@ class CurrentWeather():
 
         # Looks for a correspondence between the returned weather and an emoji
         for key in weather_emojis.keys():
-            if(weather_list.find(key) != -1):
+            if weather_list.find(key) != -1:
                 corresponding_emoji = weather_emojis[key]
 
         return f'The weather is gonna be {weather_list} {corresponding_emoji}'
 
-class Forecast():
+
+class Forecast:
     def __init__(self, place, days=16):
         self.key = API_KEY
         self.place = place
         self.url = "https://api.weatherbit.io/v2.0/forecast"
         self.days = days
-    
+
     def forecast(self):
-    
+
         request_forecast_params = {
             "key": self.key,
             "city": self.place
         }
 
-        if(self.days != 16):
+        if self.days != 16:
             request_forecast_different_days = {
                 "key": self.key,
                 "city": self.place,
@@ -71,7 +72,7 @@ class Forecast():
             forecast_user_days = requests.get(self.url, params=request_forecast_different_days)
 
             return forecast_user_days
-        
+
         else:
             forecast_default_days = requests.get(self.url, params=request_forecast_params)
 
