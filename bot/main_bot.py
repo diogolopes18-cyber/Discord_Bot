@@ -1,5 +1,6 @@
 from bot.twitter.user_search import SearchUsername
 from bot.twitter.search_tweet_by_topic import TweetByTopic
+from bot.twitter.get_tweets_by_user import TweetsByUser
 from bot.crypto.crypto_exchange import CryptoValue
 from bot.weather.get_weather import CurrentWeather
 import bot.colors.colors as available_colors
@@ -238,5 +239,19 @@ async def tweets_topic(ctx, topic):
     for i in result:
         format_result = "\n>>> {}".format(i)
         await ctx.send(format_result)
+
+
+@bot.command()
+async def tweets_user(ctx, username):
+    """
+    Returns the last tweets for a specified user
+    """
+
+    result = TweetsByUser(username=username).get_tweets_by_id()
+
+    for tweet in result:
+        format_result = "\n>>> {}".format(tweet)
+        await ctx.send(format_result)
+
 
 bot.run(TOKEN)
