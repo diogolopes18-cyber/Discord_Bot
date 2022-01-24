@@ -36,6 +36,8 @@ Discord server bot for automating some processes like creating channels, roles o
 ### Twitter 🐦
 
 - `!twitter_username <username>` &rarr; returns the Twitter name for the requested username
+- `!tweets_topic <topic>` &rarr; returns the latest tweets for a specific topic
+- `!tweets_user <username>` &rarr; returns the latest tweets for a specific user
 
 # Upcoming features
 
