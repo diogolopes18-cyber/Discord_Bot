@@ -5,6 +5,7 @@ from bot.crypto.crypto_exchange import CryptoValue
 from bot.weather.get_weather import CurrentWeather
 import bot.colors.colors as available_colors
 from bot.news.news import GetNews
+from bot.translation.translate_sentence import Translate
 
 import os
 import discord
@@ -208,8 +209,7 @@ async def crypto(ctx, custom_curr=None):
 
     elif (custom_curr):
         result = CryptoValue(currency=custom_curr).get_live_data
-        format_result = "The current cryptocurrency values are\n>>> {}".format(
-            result)
+        format_result = f'The current cryptocurrency value is\n>>> {result} $'
         await ctx.send(format_result)
 
 
@@ -253,5 +253,14 @@ async def tweets_user(ctx, username):
         format_result = "\n>>> {}".format(tweet)
         await ctx.send(format_result)
 
+
+##########################
+##  TRANSLATE COMMANDS  ##
+##########################
+
+@bot.command()
+async def translate(ctx, sentence, dest_lang):
+    translate_sentence = Translate(dest_lang,sentence).translate_sentence
+    await ctx.send("\n> {}".format(translate_sentence))
 
 bot.run(TOKEN)
