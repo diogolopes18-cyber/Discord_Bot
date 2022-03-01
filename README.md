@@ -39,6 +39,10 @@ Discord server bot for automating some processes like creating channels, roles o
 - `!tweets_topic <topic>` &rarr; returns the latest tweets for a specific topic
 - `!tweets_user <username>` &rarr; returns the latest tweets for a specific user
 
+### Translation 🗣️
+
+- `!translate <sentence> <dest_lang>` &rarr; translates a sentence into the desired language
+
 # Upcoming features
 
 - **Moderation measures** such as spam control
