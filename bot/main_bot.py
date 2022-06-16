@@ -6,6 +6,7 @@ from bot.weather.get_weather import CurrentWeather
 import bot.colors.colors as available_colors
 from bot.news.news import GetNews
 from bot.translation.translate_sentence import Translate
+from bot.job_search.search_job_by_country import SearchJobs, JobSearchResult
 
 import os
 import discord
@@ -262,5 +263,17 @@ async def tweets_user(ctx, username):
 async def translate(ctx, sentence, dest_lang):
     translate_sentence = Translate(dest_lang,sentence).translate_sentence
     await ctx.send("\n> {}".format(translate_sentence))
+
+
+##########################
+##  JOB SEARCH COMMANDS ##
+##########################
+
+@bot.command()
+async def job_search(ctx, country=None, role=None):
+    jobs = SearchJobs(country, role).format_job_search()
+
+    format_result = "\n>>> {}".format(jobs)
+    await ctx.send(format_result)
 
 bot.run(TOKEN)
