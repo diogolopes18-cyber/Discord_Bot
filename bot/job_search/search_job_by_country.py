@@ -37,7 +37,7 @@ class SearchJobs:
         self.role = role
         self.api_url = API_URL
         self.app_id = APP_ID
-        self.api_key = API_KEY
+        self.app_key = APP_KEY
 
     def search_jobs_by_country(self):
         # Sets the request to accept JSON responses
@@ -47,14 +47,14 @@ class SearchJobs:
 
         params = {
             "app_id": self.app_id,
-            "app_key": self.api_key
+            "app_key": self.app_key
         }
 
         # Searches for a specific role
         if self.role is not None:
             params = {
                 "app_id": self.app_id,
-                "app_key": self.api_key,
+                "app_key": self.app_key,
                 "what": self.role
             }
 
