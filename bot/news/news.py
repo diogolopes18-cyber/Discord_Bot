@@ -7,9 +7,7 @@ from dotenv import load_dotenv
 # Env variables
 load_dotenv()
 API_KEY = os.getenv('API_KEY')
-
-# Global variables
-url_request = "https://newsapi.org/v2/top-headlines"
+url_request = os.getenv('URL_REQUEST')
 
 
 class GetNews:

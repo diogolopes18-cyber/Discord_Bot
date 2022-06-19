@@ -6,6 +6,7 @@ from bot.weather.get_weather import CurrentWeather
 import bot.colors.colors as available_colors
 from bot.news.news import GetNews
 from bot.translation.translate_sentence import Translate
+from bot.job_search.search_job_by_country import SearchJobs
 
 import os
 import discord
@@ -220,8 +221,7 @@ async def crypto(ctx, custom_curr=None):
 @bot.command()
 async def twitter_username(ctx, username):
     """
-    Retrieves information about a stream
-    If the stream is live, what game is being played, the stream language
+    Retrieves the Twitter name for the specified username
     """
 
     result = SearchUsername(username=username).get_twitter_name()
@@ -262,5 +262,22 @@ async def tweets_user(ctx, username):
 async def translate(ctx, sentence, dest_lang):
     translate_sentence = Translate(dest_lang,sentence).translate_sentence
     await ctx.send("\n> {}".format(translate_sentence))
+
+
+##########################
+##  JOB SEARCH COMMANDS ##
+##########################
+
+@bot.command()
+async def jobs(ctx, country=None, role=None):
+    jobs = SearchJobs(country, role).format_job_search()
+
+    for job in jobs:
+        format_result = f'\n>>> **Job Title:** {job["Job Title"]}\n' \
+                        f'**Company:** {job["Company"]}\n' \
+                        f'**Location:** {job["Location"]}\n' \
+                        f'**Type:** {job["Type"]}\n' \
+                        f'**Url:** {job["Url"]}'
+        await ctx.send(format_result)
 
 bot.run(TOKEN)
