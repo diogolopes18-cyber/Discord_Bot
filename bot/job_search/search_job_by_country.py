@@ -69,12 +69,12 @@ class SearchJobs:
         result = self.search_jobs_by_country()
 
         # Define list of attributes for the selected job
-        for i in range(0, 10):
+        for i in range(0, 5):
             formatted_jobs = JobSearchResult(result["results"][i]["title"],
-                                             result["results"][i]["salary_min"],
+                                             result["results"][i]["company"]["display_name"],
+                                             result["results"][i]["location"]["area"][0],
                                              result["results"][i]["contract_time"],
-                                             result["results"][i]["redirect_url"],
-                                             result["results"][i]["description"]).format_result()
+                                             result["results"][i]["redirect_url"]).format_result()
 
             formatted_result.append(formatted_jobs)
 
