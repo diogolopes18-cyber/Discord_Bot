@@ -43,6 +43,9 @@ Discord server bot for automating some processes like creating channels, roles o
 
 - `!translate <sentence> <dest_lang>` &rarr; translates a sentence into the desired language
 
+### Job Search 💼
+- `!jobs <location> <role>` &rarr; returns jobs for the specified location and a role (default location is UK)
+
 # Upcoming features
 
 - **Moderation measures** such as spam control
