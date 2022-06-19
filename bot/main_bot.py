@@ -270,7 +270,7 @@ async def translate(ctx, sentence, dest_lang):
 ##########################
 
 @bot.command()
-async def job_search(ctx, country=None, role=None):
+async def jobs(ctx, country=None, role=None):
     jobs = SearchJobs(country, role).format_job_search()
 
     format_result = "\n>>> {}".format(jobs)
