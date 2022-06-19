@@ -11,9 +11,10 @@ API_URL = os.getenv("API_URL")
 
 
 class JobSearchResult:
-    def __init__(self, title, salary, contract_time, url, description):
+    def __init__(self, title, company, location, contract_time, url):
         self.title = title
-        self.salary = salary
+        self.company = company
+        self.location = location
         self.contract_time = contract_time
         self.url = url
         self.description = description
@@ -21,10 +22,10 @@ class JobSearchResult:
     def format_result(self):
         jobs = {
             "Job Title": self.title,
-            "Salary": self.salary,
+            "Company": self.company,
+            "Location": self.location,
             "Type": self.contract_time,
-            "Url": self.url,
-            "Description": self.description
+            "Url": self.url
         }
 
         return jobs
