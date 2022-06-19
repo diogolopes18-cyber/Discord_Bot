@@ -16,7 +16,6 @@ class JobSearchResult:
         self.location = location
         self.contract_time = contract_time
         self.url = url
-        self.description = description
 
     def format_result(self):
         jobs = {
