@@ -221,8 +221,7 @@ async def crypto(ctx, custom_curr=None):
 @bot.command()
 async def twitter_username(ctx, username):
     """
-    Retrieves information about a stream
-    If the stream is live, what game is being played, the stream language
+    Retrieves the Twitter name for the specified username
     """
 
     result = SearchUsername(username=username).get_twitter_name()
