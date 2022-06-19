@@ -6,7 +6,7 @@ from bot.weather.get_weather import CurrentWeather
 import bot.colors.colors as available_colors
 from bot.news.news import GetNews
 from bot.translation.translate_sentence import Translate
-from bot.job_search.search_job_by_country import SearchJobs, JobSearchResult
+from bot.job_search.search_job_by_country import SearchJobs
 
 import os
 import discord
