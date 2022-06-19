@@ -273,7 +273,12 @@ async def translate(ctx, sentence, dest_lang):
 async def jobs(ctx, country=None, role=None):
     jobs = SearchJobs(country, role).format_job_search()
 
-    format_result = "\n>>> {}".format(jobs)
-    await ctx.send(format_result)
+    for job in jobs:
+        format_result = f'\n>>> **Job Title:** {job["Job Title"]}\n' \
+                        f'**Company:** {job["Company"]}\n' \
+                        f'**Location:** {job["Location"]}\n' \
+                        f'**Type:** {job["Type"]}\n' \
+                        f'**Url:** {job["Url"]}'
+        await ctx.send(format_result)
 
 bot.run(TOKEN)
