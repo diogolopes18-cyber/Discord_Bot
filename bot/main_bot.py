@@ -27,7 +27,7 @@ colors = available_colors.dict_colors()
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
-bot = commands.Bot(command_prefix="!")
+bot = commands.Bot(command_prefix="!", intents=None)
 
 
 @bot.event
